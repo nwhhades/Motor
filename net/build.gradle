@@ -1,0 +1,91 @@
+plugins {
+    id 'com.android.library'
+    id 'maven-publish'
+}
+
+def groupIdStr = "cn.hades.net"
+def artifactIdStr = "net"
+def versionStr = "1.0"
+
+android {
+    namespace 'cn.hades.net'
+    compileSdk 33
+
+    defaultConfig {
+        minSdk 19
+
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    publishing {
+        singleVariant('release') {
+            withSourcesJar()
+        }
+    }
+    allprojects {
+        gradle.projectsEvaluated {
+            tasks.withType(JavaCompile).tap {
+                configureEach {
+                    options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+                }
+            }
+        }
+    }
+}
+
+dependencies {
+
+    //不需要混淆
+    //缓存
+    api 'com.tencent:mmkv:1.2.16'
+    //RxJava
+    api 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    api 'io.reactivex.rxjava2:rxjava:2.2.21'
+
+    //需要混淆
+    //GSON
+    api 'com.google.code.gson:gson:2.10.1'
+    //okhttp
+    //noinspection GradleDependency
+    api 'com.squareup.okhttp3:okhttp:3.12.13'
+    //noinspection GradleDependency
+    api 'com.squareup.okhttp3:logging-interceptor:3.12.13'
+    //Retrofit2
+    //noinspection GradleDependency
+    api 'com.squareup.retrofit2:retrofit:2.6.4'
+    //noinspection GradleDependency
+    api 'com.squareup.retrofit2:converter-gson:2.6.4'
+    //noinspection GradleDependency
+    api 'com.squareup.retrofit2:converter-scalars:2.6.4'
+    //noinspection GradleDependency
+    api 'com.squareup.retrofit2:adapter-rxjava2:2.6.4'
+    //下载
+    api 'com.liulishuo.okdownload:okdownload:1.0.7'
+    api 'com.liulishuo.okdownload:sqlite:1.0.7'
+    api 'com.liulishuo.okdownload:okhttp:1.0.7'
+
+}
+
+publishing {
+    publications {
+        release(MavenPublication) {
+            groupId = groupIdStr
+            artifactId = artifactIdStr
+            version = versionStr
+
+            afterEvaluate {
+                from components.release
+            }
+        }
+    }
+}
