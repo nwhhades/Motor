@@ -6,4 +6,11 @@
     </style>
 
     <style name="Theme.Motor" parent="Base.Theme.Motor" />
+
+    <style name="TvButton" parent="ThemeOverlay.Material3.Button.TextButton">
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="rippleColor">?attr/colorPrimary</item>
+    </style>
+
 </resources>

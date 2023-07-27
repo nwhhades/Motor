@@ -6,13 +6,104 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/et_url"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="50dp"
+        android:hint="请求服务器地址"
+        android:singleLine="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn1"
+        style="@style/TvButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Get请求"
+        android:theme="@style/TvButton"
+        app:layout_constraintStart_toStartOf="@id/et_url"
+        app:layout_constraintTop_toBottomOf="@id/et_url" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn2"
+        style="@style/TvButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="Post请求"
+        android:theme="@style/TvButton"
+        app:layout_constraintStart_toEndOf="@id/btn1"
+        app:layout_constraintTop_toTopOf="@id/btn1" />
+
+    <RadioGroup
+        android:id="@+id/rg_cache"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@id/btn2"
+        app:layout_constraintStart_toEndOf="@id/btn2"
+        app:layout_constraintTop_toTopOf="@id/btn2">
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/mrb1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:paddingStart="10dp"
+            android:paddingEnd="0dp"
+            android:text="NoCache" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/mrb2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="0dp"
+            android:text="OnlyCache" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/mrb3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="0dp"
+            android:text="FirstCache" />
+    </RadioGroup>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/et_cache_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:hint="缓存时间"
+        android:inputType="number"
+        android:singleLine="true"
+        app:layout_constraintBottom_toBottomOf="@id/rg_cache"
+        app:layout_constraintStart_toEndOf="@id/rg_cache"
+        app:layout_constraintTop_toTopOf="@id/rg_cache" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/text_background"
+        android:padding="5dp"
+        android:scrollbars="vertical"
+        android:textColor="@color/design_default_color_primary_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/et_url"
+        app:layout_constraintStart_toStartOf="@id/et_url"
+        app:layout_constraintTop_toBottomOf="@id/btn1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

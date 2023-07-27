@@ -46,6 +46,8 @@ android {
 dependencies {
 
     //不需要混淆
+    //androidx
+    api 'androidx.appcompat:appcompat:1.6.1'
     //缓存
     api 'com.tencent:mmkv:1.2.16'
     //RxJava
